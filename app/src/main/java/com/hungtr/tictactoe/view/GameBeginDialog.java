@@ -4,10 +4,6 @@ package com.hungtr.tictactoe.view;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -15,7 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
-import husaynhakeem.io.tictactoe_mvvm.R;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import com.hungtr.tictactoe.R;
 
 
 public class GameBeginDialog extends DialogFragment {

@@ -6,7 +6,7 @@
 
         <variable
             name="gameViewModel"
-            type="GameView" />
+            type="com.hungtr.tictactoe.viewmodel.GameViewModel" />
     </data>
 
     <GridLayout
