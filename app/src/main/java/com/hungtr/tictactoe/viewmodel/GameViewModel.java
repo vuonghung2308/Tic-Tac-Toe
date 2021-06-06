@@ -1,6 +1,15 @@
 package com.hungtr.tictactoe.viewmodel;
 
-import androidx.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModel;
+
+import androidx.databinding.ObservableArrayMap;
+import androidx.lifecycle.LiveData;;
+
+import com.hungtr.tictactoe.model.Cell;
+import com.hungtr.tictactoe.model.Game;
+import com.hungtr.tictactoe.model.Player;
+
+import static com.hungtr.tictactoe.model.utilities.StringUtility.stringFromNumbers;
 
 public class GameViewModel extends ViewModel {
 
