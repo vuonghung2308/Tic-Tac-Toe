@@ -1,9 +1,8 @@
-package com.hungtr.tictactoe.view;
+package com.hungtr.tictactoe.view.game.machine;
 
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -17,17 +16,16 @@ import com.hungtr.tictactoe.R;
 public class GameEndDialog extends DialogFragment {
 
     private View rootView;
-    private GameActivity activity;
+    private GameMachineActivity activity;
     private String winnerName;
 
-    public static GameEndDialog newInstance(GameActivity activity, String winnerName) {
+    public static GameEndDialog newInstance(GameMachineActivity activity, String winnerName) {
         GameEndDialog dialog = new GameEndDialog();
         dialog.activity = activity;
         dialog.winnerName = winnerName;
         return dialog;
     }
 
-    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         initViews();

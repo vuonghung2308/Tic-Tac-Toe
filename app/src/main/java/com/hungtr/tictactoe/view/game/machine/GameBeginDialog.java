@@ -1,9 +1,9 @@
-package com.hungtr.tictactoe.view;
+package com.hungtr.tictactoe.view.game.machine;
 
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -13,7 +13,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -23,24 +22,20 @@ import com.hungtr.tictactoe.R;
 public class GameBeginDialog extends DialogFragment {
 
     private TextInputLayout player1Layout;
-    private TextInputLayout player2Layout;
 
     private TextInputEditText player1EditText;
-    private TextInputEditText player2EditText;
 
     private String player1;
-    private String player2;
 
     private View rootView;
-    private GameActivity activity;
+    private GameMachineActivity activity;
 
-    public static GameBeginDialog newInstance(GameActivity activity) {
+    public static GameBeginDialog newInstance(GameMachineActivity activity) {
         GameBeginDialog dialog = new GameBeginDialog();
         dialog.activity = activity;
         return dialog;
     }
 
-    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         initViews();
@@ -49,6 +44,7 @@ public class GameBeginDialog extends DialogFragment {
                 .setTitle(R.string.game_dialog_title)
                 .setCancelable(false)
                 .setPositiveButton(R.string.done, null)
+                .setNegativeButton("Cancel", (dialog, which) -> activity.finish())
                 .create();
         alertDialog.setCanceledOnTouchOutside(false);
         alertDialog.setCancelable(false);
@@ -60,13 +56,9 @@ public class GameBeginDialog extends DialogFragment {
 
     private void initViews() {
         rootView = LayoutInflater.from(getContext())
-                .inflate(R.layout.game_begin_dialog, null, false);
-
+                .inflate(R.layout.game_machine_begin_dialog, null, false);
         player1Layout = rootView.findViewById(R.id.layout_player1);
-        player2Layout = rootView.findViewById(R.id.layout_player2);
-
         player1EditText = rootView.findViewById(R.id.et_player1);
-        player2EditText = rootView.findViewById(R.id.et_player2);
         addTextWatchers();
     }
 
@@ -78,8 +70,8 @@ public class GameBeginDialog extends DialogFragment {
     }
 
     private void onDoneClicked() {
-        if (isAValidName(player1Layout, player1) & isAValidName(player2Layout, player2)) {
-            activity.onPlayersSet(player1, player2);
+        if (isAValidName(player1Layout, player1)) {
+            activity.onPlayersSet(player1);
             dismiss();
         }
     }
@@ -90,13 +82,6 @@ public class GameBeginDialog extends DialogFragment {
             layout.setError(getString(R.string.game_dialog_empty_name));
             return false;
         }
-
-        if (player1 != null && player2 != null && player1.equalsIgnoreCase(player2)) {
-            layout.setErrorEnabled(true);
-            layout.setError(getString(R.string.game_dialog_same_names));
-            return false;
-        }
-
         layout.setErrorEnabled(false);
         layout.setError("");
         return true;
@@ -115,20 +100,6 @@ public class GameBeginDialog extends DialogFragment {
             @Override
             public void afterTextChanged(Editable s) {
                 player1 = s.toString();
-            }
-        });
-        player2EditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                player2 = s.toString();
             }
         });
     }

@@ -1,6 +1,6 @@
 package com.hungtr.tictactoe.model;
 
-import com.hungtr.tictactoe.model.utilities.StringUtility;
+import com.hungtr.tictactoe.utilities.StringUtils;
 
 public class Cell {
 
@@ -11,6 +11,6 @@ public class Cell {
     }
 
     public boolean isEmpty() {
-        return player == null || StringUtility.isNullOrEmpty(player.value);
+        return player == null || StringUtils.isNullOrEmpty(player.value);
     }
 }

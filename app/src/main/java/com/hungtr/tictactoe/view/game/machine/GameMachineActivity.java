@@ -1,23 +1,25 @@
-package com.hungtr.tictactoe.view;
+package com.hungtr.tictactoe.view.game.machine;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.hungtr.tictactoe.R;
 import com.hungtr.tictactoe.databinding.ActivityGameBinding;
+import com.hungtr.tictactoe.databinding.ActivityGameMachineBinding;
 import com.hungtr.tictactoe.model.Player;
+import com.hungtr.tictactoe.utilities.StringUtils;
+import com.hungtr.tictactoe.viewmodel.GameMachineViewModel;
 import com.hungtr.tictactoe.viewmodel.GameViewModel;
-import com.hungtr.tictactoe.viewmodel.ViewModelFactory;
 
-import static com.hungtr.tictactoe.model.utilities.StringUtility.isNullOrEmpty;
-
-public class GameActivity extends AppCompatActivity {
+public class GameMachineActivity extends AppCompatActivity {
 
     private static final String GAME_BEGIN_DIALOG_TAG = "game_dialog_tag";
     private static final String GAME_END_DIALOG_TAG = "game_end_dialog_tag";
     private static final String NO_WINNER = "No one";
-    private GameViewModel gameViewModel;
+    private GameMachineViewModel gameViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +33,14 @@ public class GameActivity extends AppCompatActivity {
         dialog.show(getSupportFragmentManager(), GAME_BEGIN_DIALOG_TAG);
     }
 
-    public void onPlayersSet(String player1, String player2) {
-        initDataBinding(player1, player2);
+    public void onPlayersSet(String player1) {
+        initDataBinding(player1);
     }
 
-    private void initDataBinding(String player1, String player2) {
-        ActivityGameBinding activityGameBinding = DataBindingUtil.setContentView(this, R.layout.activity_game);
-        gameViewModel = ViewModelProviders.of(this, new ViewModelFactory()).get(GameViewModel.class)
-        gameViewModel.init(player1, player2);
+    private void initDataBinding(String player1) {
+        ActivityGameMachineBinding activityGameBinding = DataBindingUtil.setContentView(this, R.layout.activity_game_machine);
+        gameViewModel = ViewModelProviders.of(this).get(GameMachineViewModel.class);
+        gameViewModel.init(player1);
         activityGameBinding.setGameViewModel(gameViewModel);
         setUpOnGameEndListener();
     }
@@ -48,7 +50,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void onGameWinnerChanged(Player winner) {
-        String winnerName = winner == null || isNullOrEmpty(winner.name) ? NO_WINNER : winner.name;
+        String winnerName = winner == null || StringUtils.isNullOrEmpty(winner.name) ? NO_WINNER : winner.name;
         GameEndDialog dialog = GameEndDialog.newInstance(this, winnerName);
         dialog.setCancelable(false);
         dialog.show(getSupportFragmentManager(), GAME_END_DIALOG_TAG);

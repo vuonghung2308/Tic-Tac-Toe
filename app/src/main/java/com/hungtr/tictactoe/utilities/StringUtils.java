@@ -1,8 +1,6 @@
-package com.hungtr.tictactoe.model.utilities;
+package com.hungtr.tictactoe.utilities;
 
-
-public class StringUtility {
-
+public class StringUtils {
     public static String stringFromNumbers(int... numbers) {
         StringBuilder sNumbers = new StringBuilder();
         for (int number : numbers)

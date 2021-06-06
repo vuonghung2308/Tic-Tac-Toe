@@ -1,15 +1,13 @@
 package com.hungtr.tictactoe.viewmodel;
 
-import android.arch.lifecycle.ViewModel;
-
 import androidx.databinding.ObservableArrayMap;
-import androidx.lifecycle.LiveData;;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.hungtr.tictactoe.model.Cell;
 import com.hungtr.tictactoe.model.Game;
 import com.hungtr.tictactoe.model.Player;
-
-import static com.hungtr.tictactoe.model.utilities.StringUtility.stringFromNumbers;
+import com.hungtr.tictactoe.utilities.StringUtils;
 
 public class GameViewModel extends ViewModel {
 
@@ -24,7 +22,7 @@ public class GameViewModel extends ViewModel {
     public void onClickedCellAt(int row, int column) {
         if (game.cells[row][column] == null) {
             game.cells[row][column] = new Cell(game.currentPlayer);
-            cells.put(stringFromNumbers(row, column), game.currentPlayer.value);
+            cells.put(StringUtils.stringFromNumbers(row, column), game.currentPlayer.value);
             if (game.hasGameEnded())
                 game.reset();
             else

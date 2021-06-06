@@ -18,6 +18,8 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.game.people.GameActivity" />
+        <activity android:name=".view.game.machine.GameMachineActivity" />
     </application>
 
 </manifest>

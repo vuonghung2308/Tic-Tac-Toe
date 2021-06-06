@@ -20,8 +20,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding.viewPaper.setAdapter(new ViewPaperAdapter(this));
         binding.bottomNavigation.setOnNavigationItemSelectedListener(item -> {
-            binding.viewPaper.setCurrentItem(item.getItemId());
+            if (item.getItemId() == R.id.play) {
+                binding.bottomNavigation.getMenu()
+                        .getItem(1).setChecked(true);
+                binding.bottomNavigation.getMenu()
+                        .getItem(0).setChecked(false);
+                binding.viewPaper.setCurrentItem(0);
+            }
+            else if (item.getItemId() == R.id.history) {
+                binding.bottomNavigation.getMenu()
+                        .getItem(0).setChecked(true);
+                binding.bottomNavigation.getMenu()
+                        .getItem(1).setChecked(false);
+                binding.viewPaper.setCurrentItem(1);
+            }
             return false;
         });
     }

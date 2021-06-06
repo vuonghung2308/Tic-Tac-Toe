@@ -7,7 +7,7 @@
 
         <variable
             name="gameViewModel"
-            type="com.hungtr.tictactoe.viewmodel.GameViewModel" />
+            type="com.hungtr.tictactoe.viewmodel.GameMachineViewModel" />
 
     </data>
 

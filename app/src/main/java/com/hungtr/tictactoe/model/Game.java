@@ -4,7 +4,7 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import static com.hungtr.tictactoe.model.utilities.StringUtility.isNullOrEmpty;
+import com.hungtr.tictactoe.utilities.StringUtils;
 
 public class Game {
 
@@ -14,7 +14,7 @@ public class Game {
     public Player player1;
     public Player player2;
 
-    public Player currentPlayer = player1;
+    public Player currentPlayer;
     public Cell[][] cells;
 
     public MutableLiveData<Player> winner = new MutableLiveData<>();
@@ -83,21 +83,12 @@ public class Game {
         return true;
     }
 
-    /**
-     * 2 cells are equal if:
-     * - Both are none null
-     * - Both have non null values
-     * - both have equal values
-     *
-     * @param cells: Cells to check if are equal
-     * @return
-     */
     private boolean areEqual(Cell... cells) {
         if (cells == null || cells.length == 0)
             return false;
 
         for (Cell cell : cells)
-            if (cell == null || isNullOrEmpty(cell.player.value))
+            if (cell == null || StringUtils.isNullOrEmpty(cell.player.value))
                 return false;
 
         Cell comparisonBase = cells[0];
