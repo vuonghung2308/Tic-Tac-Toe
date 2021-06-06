@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TicTacToe"
         tools:ignore="AllowBackup">
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.main.MainActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />

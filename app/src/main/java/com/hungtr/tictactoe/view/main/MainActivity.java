@@ -1,4 +1,4 @@
-package com.hungtr.tictactoe.view;
+package com.hungtr.tictactoe.view.main;
 
 import android.os.Bundle;
 
