@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        binding.bottomNavigation.setOnNavigationItemSelectedListener(item ->
-
-                false
-        );
+        binding.bottomNavigation.setOnNavigationItemSelectedListener(item -> {
+            binding.viewPaper.setCurrentItem(item.getItemId());
+            return false;
+        });
     }
 }
