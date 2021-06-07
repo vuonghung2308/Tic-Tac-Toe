@@ -16,9 +16,13 @@ public class GameMachineViewModel extends ViewModel {
 
     public ObservableArrayMap<String, String> cells;
     private Game game;
+    private String player1;
+    private String player2;
 
     public void init(String player1) {
-        game = new Game(player1, "machine");
+        this.player1 = player1;
+        this.player2 = "Machine";
+        game = new Game(player1, "Machine");
         cells = new ObservableArrayMap<>();
     }
 
@@ -43,6 +47,14 @@ public class GameMachineViewModel extends ViewModel {
                 );
             }
         }
+    }
+
+    public String getPlayer1() {
+        return player1;
+    }
+
+    public String getPlayer2() {
+        return player2;
     }
 
 

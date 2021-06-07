@@ -12,6 +12,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.hungtr.tictactoe.R;
+import com.hungtr.tictactoe.db.AppDatabase;
+import com.hungtr.tictactoe.db.History;
+
+import java.util.concurrent.Executors;
 
 
 public class GameEndDialog extends DialogFragment {
@@ -27,9 +31,24 @@ public class GameEndDialog extends DialogFragment {
         return dialog;
     }
 
+    private void update() {
+        History history = new History();
+        history.winner = winnerName;
+        history.player1 = activity.player1();
+        history.player2 = activity.player2();
+        history.type = "People";
+        Thread thread = new Thread(() -> {
+            AppDatabase.getInstance()
+                    .getHistoryDao()
+                    .insertAll(history);
+        });
+        thread.start();
+    }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        update();
         initViews();
         AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setView(rootView)

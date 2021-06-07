@@ -10,7 +10,7 @@ import com.hungtr.tictactoe.App;
 public abstract class AppDatabase extends RoomDatabase {
     public abstract HistoryDao getHistoryDao();
 
-    public static AppDatabase instance = null;
+    private static AppDatabase instance = null;
 
     public static AppDatabase getInstance() {
         if (instance == null) {
@@ -18,8 +18,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     App.getContext(),
                     AppDatabase.class,
                     "app_database"
-            )
-                    .build();
+            ).build();
         }
         return instance;
     }

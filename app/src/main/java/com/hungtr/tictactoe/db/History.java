@@ -9,5 +9,6 @@ public class History {
     public int id;
     public String player1;
     public String player2;
+    public String winner;
     public String type;
 }

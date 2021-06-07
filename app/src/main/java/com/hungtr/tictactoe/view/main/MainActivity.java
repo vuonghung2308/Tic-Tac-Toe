@@ -1,6 +1,7 @@
 package com.hungtr.tictactoe.view.main;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -15,12 +16,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("TAG", "onCreate: ");
         initView();
     }
 
     private void initView() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.viewPaper.setAdapter(new ViewPaperAdapter(this));
+        binding.viewPaper.setUserInputEnabled(false);
         binding.bottomNavigation.setOnNavigationItemSelectedListener(item -> {
             if (item.getItemId() == R.id.play) {
                 binding.bottomNavigation.getMenu()

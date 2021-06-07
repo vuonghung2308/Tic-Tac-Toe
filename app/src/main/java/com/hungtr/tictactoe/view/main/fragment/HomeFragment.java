@@ -3,6 +3,7 @@ package com.hungtr.tictactoe.view.main.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ public class HomeFragment extends Fragment {
             ViewGroup container,
             Bundle savedInstanceState
     ) {
+        Log.d("TAG", "onCreateView: ");
         binding = DataBindingUtil.inflate(
                 inflater,
                 R.layout.fragment_home,

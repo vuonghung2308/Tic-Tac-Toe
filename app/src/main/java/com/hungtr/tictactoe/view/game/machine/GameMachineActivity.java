@@ -1,18 +1,17 @@
 package com.hungtr.tictactoe.view.game.machine;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.hungtr.tictactoe.R;
-import com.hungtr.tictactoe.databinding.ActivityGameBinding;
 import com.hungtr.tictactoe.databinding.ActivityGameMachineBinding;
 import com.hungtr.tictactoe.model.Player;
 import com.hungtr.tictactoe.utilities.StringUtils;
 import com.hungtr.tictactoe.viewmodel.GameMachineViewModel;
-import com.hungtr.tictactoe.viewmodel.GameViewModel;
 
 public class GameMachineActivity extends AppCompatActivity {
 
@@ -54,5 +53,13 @@ public class GameMachineActivity extends AppCompatActivity {
         GameEndDialog dialog = GameEndDialog.newInstance(this, winnerName);
         dialog.setCancelable(false);
         dialog.show(getSupportFragmentManager(), GAME_END_DIALOG_TAG);
+    }
+
+    public String player1() {
+        return gameViewModel.getPlayer1();
+    }
+
+    public String player2() {
+        return gameViewModel.getPlayer2();
     }
 }

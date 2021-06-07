@@ -53,4 +53,12 @@ public class GameActivity extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.show(getSupportFragmentManager(), GAME_END_DIALOG_TAG);
     }
+
+    public String player1() {
+        return gameViewModel.getPlayer1();
+    }
+
+    public String player2() {
+        return gameViewModel.getPlayer2();
+    }
 }
